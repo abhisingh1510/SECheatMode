@@ -42,7 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_2,name);
         contentValues.put(COL_3,username);
         contentValues.put(COL_4,password);
-        contentValues.put(COL_4,status);
+        contentValues.put(COL_5,status);
         long result=db.insert(TABLE_NAME,null,contentValues);
         if(result==-1)
             return false;

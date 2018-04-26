@@ -30,7 +30,7 @@ public class FirstPage extends AppCompatActivity {
         Employee.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
-                startActivity(new Intent(FirstPage.this, EmployeePage.class));
+                startActivity(new Intent(FirstPage.this, LoginPage.class));
             }
         });
         Guest.setOnClickListener(new View.OnClickListener() {

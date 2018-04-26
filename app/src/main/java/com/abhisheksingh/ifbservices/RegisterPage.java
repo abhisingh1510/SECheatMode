@@ -15,7 +15,7 @@ public class RegisterPage extends AppCompatActivity {
 
     DatabaseHelper myDb;
     EditText editName,editUsername,editPassword,rePassword;
-    String editStatus,pass,repass;
+    String editStatus;
     Button btnRegister;
     Spinner spinnerStatus;
     @Override
@@ -23,7 +23,7 @@ public class RegisterPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_page);
 
-        myDb=new DatabaseHelper(this,"ADMIN_LOGIN",null,1);
+        myDb=new DatabaseHelper(RegisterPage.this,"ADMIN_LOGIN",null,1);
         editName=(EditText)findViewById(R.id.name_text);
         editUsername=(EditText)findViewById(R.id.username_text);
         editPassword=(EditText)findViewById(R.id.password_text);
@@ -51,7 +51,6 @@ public class RegisterPage extends AppCompatActivity {
         String editStatus=(String)spinnerStatus.getSelectedItem().toString();
         addData();
     }
-
     public void addData(){
         btnRegister.setOnClickListener(
             new View.OnClickListener(){

@@ -11,43 +11,63 @@ import android.widget.Toast;
 
 public class LoginPage extends AppCompatActivity {
 
-    Button Login,Register;
-    EditText username,password,valid_w;
+    Button Login_new,Register_new;
+    EditText username_new,password_new,valid_w;
     String username_admin="sep",password_admin="1234";
     ProgressBar pbar;
+    public String[] user_emp={"ram","mahesh","shankar","ganesh","mohan","pritam","suraj","krishna","mohit","kishan"};
+    public String[] pass_emp={"sep","sep","sep","sep","sep","sep","sep","sep","sep","sep"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
-        username=(EditText)findViewById(R.id.text_username);
-        password=(EditText)findViewById(R.id.text_password);
-        Login=(Button) findViewById(R.id.login_btn);
-        Register=(Button)findViewById(R.id.register_btn);
+        username_new=(EditText)findViewById(R.id.text_username);
+        password_new=(EditText)findViewById(R.id.text_password);
+        Login_new=(Button) findViewById(R.id.login_btn);
+        Register_new=(Button)findViewById(R.id.register_btn);
         pbar=(ProgressBar)findViewById(R.id.progressBar);
         pbar.setVisibility(View.INVISIBLE);
         valid_w=(EditText)findViewById(R.id.valid_up_text);
         valid_w.setVisibility(View.INVISIBLE);
+        Register_new.setVisibility(View.INVISIBLE);
 
-        Login.setOnClickListener(new View.OnClickListener() {
+        Login_new.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View view)
             {
-                if(username_admin.equals(username.getText().toString()) && password_admin.equals(password.getText().toString()))
+                int i;
+                boolean flag=false;
+                for(i=0;i<10;i++)
                 {
-                    startActivity(new Intent(LoginPage.this,AdministratorPage.class));
-                    Toast.makeText(LoginPage.this,"Welcome",Toast.LENGTH_LONG).show();
+                    if(user_emp[i].equals(username_new.getText().toString()) && pass_emp[i].equals(password_new.getText().toString()))
+                    {
+                        startActivity(new Intent(LoginPage.this,EmployeePage.class));
+                        Toast.makeText(LoginPage.this,"Welcome",Toast.LENGTH_LONG).show();
+                        flag=true;
+                        break;
+                    }
+                    else
+                        continue;
                 }
-                else
-                    Toast.makeText(LoginPage.this,"Incorrect Username or Password",Toast.LENGTH_LONG).show();
+                if(flag==false)
+                {
+                    if(username_admin.equals(username_new.getText().toString()) && password_admin.equals(password_new.getText().toString()))
+                    {
+                        startActivity(new Intent(LoginPage.this,AdministratorPage.class));
+                        Toast.makeText(LoginPage.this,"Welcome",Toast.LENGTH_LONG).show();
+                    }
+                    else
+                        Toast.makeText(LoginPage.this,"Incorrect Username or Password",Toast.LENGTH_LONG).show();
+                }
             }
         });
-        Register.setOnClickListener(new View.OnClickListener() {
+        /*Register_new.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
                 startActivity(new Intent(LoginPage.this, RegisterPage.class));
             }
         });
-
+        */
     }
 }
