@@ -22,6 +22,7 @@ public class EmployeePage extends AppCompatActivity {
         name=(EditText)findViewById(R.id.employeeName_text);
         //rb.setVisibility(View.INVISIBLE);
         rb.setRating(GuestPage.rating);
+        name.setText(LoginPage.user_emp[LoginPage.i]);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

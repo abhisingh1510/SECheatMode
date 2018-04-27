@@ -15,8 +15,9 @@ public class LoginPage extends AppCompatActivity {
     EditText username_new,password_new,valid_w;
     String username_admin="sep",password_admin="1234";
     ProgressBar pbar;
-    public String[] user_emp={"ram","mahesh","shankar","ganesh","mohan","pritam","suraj","krishna","mohit","kishan"};
-    public String[] pass_emp={"sep","sep","sep","sep","sep","sep","sep","sep","sep","sep"};
+    public static String[] user_emp={"ram","mahesh","shankar","ganesh","mohan","pritam","suraj","krishna","mohit","kishan"};
+    public static String[] pass_emp={"sep","sep","sep","sep","sep","sep","sep","sep","sep","sep"};
+    static  int i;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +37,7 @@ public class LoginPage extends AppCompatActivity {
 
             public void onClick(View view)
             {
-                int i;
+                //int i;
                 boolean flag=false;
                 for(i=0;i<10;i++)
                 {

@@ -11,6 +11,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class ContactUsPage extends AppCompatActivity {
+
     Spinner spinner;
     EditText editText;
     Button submit;

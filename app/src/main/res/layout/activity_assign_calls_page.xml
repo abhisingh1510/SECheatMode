@@ -33,6 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
+                android:gravity="center"
                 android:hint="Call To Be Assigned" />
 
             <EditText
@@ -45,6 +46,7 @@
                 android:background="#FFFFFF"
                 android:hint="Call(i)/TotalCalls"
                 android:textSize="12sp"
+                android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.501"
                 app:layout_constraintStart_toStartOf="parent"
@@ -74,6 +76,7 @@
                 android:layout_marginTop="8dp"
                 android:background="#FFFFFF"
                 android:hint="Ongoing Call"
+                android:gravity="center"
                 app:layout_constraintBottom_toTopOf="@+id/taskFinished_btn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -88,6 +91,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:background="#FFFFFF"
+                android:gravity="center"
                 android:hint="Employee Availability"
                 android:textColor="#FF5722"
                 android:textSize="12sp"
