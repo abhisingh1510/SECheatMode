@@ -31,7 +31,11 @@ public class ContactUsPage extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
         spinner.setAdapter(adapter);
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> ec0c8e13e26635e77dcfa5af71df3f1df595dc68
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
