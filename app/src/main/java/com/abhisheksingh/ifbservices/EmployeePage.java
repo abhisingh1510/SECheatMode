@@ -17,6 +17,7 @@ public class EmployeePage extends AppCompatActivity {
         setContentView(R.layout.activity_employee_page);
         logout=(Button)findViewById(R.id.logout_employee_btn);
         rb=(RatingBar)findViewById(R.id.ratingBar_employee);
+
         rb.setVisibility(View.INVISIBLE);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
