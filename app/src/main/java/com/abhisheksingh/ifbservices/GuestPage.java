@@ -12,7 +12,7 @@ public class GuestPage extends AppCompatActivity {
 
     Button rateus,contactus;
     RatingBar rb;
-    float rating;
+    static float rating;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
