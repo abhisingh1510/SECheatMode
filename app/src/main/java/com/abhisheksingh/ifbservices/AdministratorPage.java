@@ -24,18 +24,23 @@ public class AdministratorPage extends AppCompatActivity {
         billing.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 try {
-                    int n=3;//length/no. of query
+                    int n=FirstPage.employees.size() ;//length/no. of query
                     int id[]=new int[n];//will store id of query
                     String tech[]=new String[n];//Plumer, etc. Technician type
-                    int rate[]=new int[n];
+                    /*
+                    Mechanism for Rating, Start and End time to be handled by @Garvit Jain.
+                     */
+                    int rate[]=new int[n];//Rate
                     int st[]=new int[n];//Start time
                     int end[]=new int[n];//end time
                     int cost[]=new int[n];
                     int sum=0;
+                    Employee temp;
                     for(int i=0;i<n;i++){
-                        id[i]=1;
-                        tech[i]="Plumber";
-                        rate[i]=1000;
+                        temp=FirstPage.employees.get(i);
+                        id[i]=temp.getId();
+                        tech[i]=temp.getJob();
+                        rate[i]=20;
                         st[i]=1;
                         end[i]=1000;
                         cost[i]=10000;

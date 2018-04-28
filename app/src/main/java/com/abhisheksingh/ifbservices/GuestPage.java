@@ -20,10 +20,13 @@ public class GuestPage extends AppCompatActivity {
         rateus=(Button)findViewById(R.id.rate_us_btn);
         contactus=(Button)findViewById(R.id.contact_us_btn);
         rb=(RatingBar)findViewById(R.id.ratingBar_guest);
+        rb.setRating(FirstPage.total/FirstPage.num);
         rateus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 rating=rb.getRating();
+                FirstPage.total+=rating;
+                FirstPage.num++;
                 Toast.makeText(GuestPage.this,"Thank You!",Toast.LENGTH_LONG).show();
             }
         });

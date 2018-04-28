@@ -11,6 +11,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+
+import java.io.FileWriter;
+
 public class RegisterPage extends AppCompatActivity {
 
     DatabaseHelper myDb;
@@ -57,15 +60,24 @@ public class RegisterPage extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (editPassword.getText().toString().equals(rePassword.getText().toString())) {
-                        boolean isInserted = myDb.insertData(editName.getText().toString(),
-                                editUsername.getText().toString(),
-                                editPassword.getText().toString(),
-                                editStatus);
-                        if (isInserted == true)
-                            Toast.makeText(RegisterPage.this, "Data Inserted", Toast.LENGTH_LONG).show();
-                        else
-                            Toast.makeText(RegisterPage.this, "Data Not Inserted", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(RegisterPage.this, FirstPage.class));
+                       try
+                       {
+                           FileWriter writer = new FileWriter(FirstPage.root,false);
+                           writer.append(FirstPage.total+" "+FirstPage.num);
+                           for(int i=0;i<FirstPage.employees.size();i++)
+                           {
+                               FirstPage.employees.get(i).print(writer);
+                           }
+                           writer.flush();
+                           writer.close();
+                           Toast.makeText(RegisterPage.this, "Data Inserted", Toast.LENGTH_LONG).show();
+                           startActivity(new Intent(RegisterPage.this, FirstPage.class));
+                       }
+                       catch (Exception e)
+                       {
+                           Toast.makeText(RegisterPage.this, "Data Not Inserted", Toast.LENGTH_LONG).show();
+                           startActivity(new Intent(RegisterPage.this, FirstPage.class));
+                       }
                     }
                     else
                         Toast.makeText(RegisterPage.this, "Password Do Not Match", Toast.LENGTH_LONG).show();
