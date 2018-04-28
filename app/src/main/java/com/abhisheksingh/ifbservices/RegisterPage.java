@@ -62,6 +62,7 @@ public class RegisterPage extends AppCompatActivity {
                     if (editPassword.getText().toString().equals(rePassword.getText().toString())) {
                        try
                        {
+                           FirstPage.employees.add(new Employee(editUsername.getText().toString(),(String)editPassword.getText().toString(),editUsername.getText().toString(),FirstPage.job[(int)((Math.random()-0.00001)*5)],"N/A",FirstPage.employees.size(),(float)3.0));
                            FileWriter writer = new FileWriter(FirstPage.root,false);
                            writer.append(FirstPage.total+" "+FirstPage.num);
                            for(int i=0;i<FirstPage.employees.size();i++)

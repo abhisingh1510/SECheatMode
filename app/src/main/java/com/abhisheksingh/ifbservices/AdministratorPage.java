@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class AdministratorPage extends AppCompatActivity {
 
@@ -15,6 +17,9 @@ public class AdministratorPage extends AppCompatActivity {
         Button assignCalls=findViewById(R.id.assignCalls_btn);
         Button billing=findViewById(R.id.billing_btn);
         Button logout=findViewById(R.id.logout_btn);
+        TextView adname=findViewById(R.id.adminstrator_name_text);
+        adname.setText("Mr. Abhishek Pandey");
+
         assignCalls.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
@@ -24,38 +29,57 @@ public class AdministratorPage extends AppCompatActivity {
         billing.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 try {
-                    int n=FirstPage.employees.size() ;//length/no. of query
+                    int n=FirstPage.finished.size() ;//length no. of query
                     int id[]=new int[n];//will store id of query
                     String tech[]=new String[n];//Plumer, etc. Technician type
-                    /*
-                    Mechanism for Rating, Start and End time to be handled by @Garvit Jain.
-                     */
-                    int rate[]=new int[n];//Rate
-                    int st[]=new int[n];//Start time
-                    int end[]=new int[n];//end time
-                    int cost[]=new int[n];
-                    int sum=0;
-                    Employee temp;
+                    double rate[]=new double[n];//Rate
+                    long st[]=new long[n];//Start time
+                    long end[]=new long[n];//end time
+                    long []duration =new long[n];
+                    double cost[]=new double[n];
+                    double sum=0;
+                    Task temp;
                     for(int i=0;i<n;i++){
-                        temp=FirstPage.employees.get(i);
-                        id[i]=temp.getId();
-                        tech[i]=temp.getJob();
-                        rate[i]=20;
-                        st[i]=1;
-                        end[i]=1000;
-                        cost[i]=10000;
+                        temp=FirstPage.finished.get(i);
+                        id[i]=temp.getEid();
+                        tech[i]=temp.getExpertise();
+                        for(int j=0;j<FirstPage.job.length;j++)
+                        {
+                            if(FirstPage.job[j].equals(tech[i]))
+                            {
+                                rate[i]=FirstPage.rateOfTechnician[j];
+                                break;
+                            }
+                        }
+
+                        st[i]=temp.getStartTime()/1000;
+                        end[i]=temp.getEndTime()/1000;
+                        cost[i]=(end[i]-st[i])*rate[i];
+                        rate[i]*=100;
+                        rate[i]=(long)rate[i];
+                        rate[i]/=100;
+                        duration[i]=end[i]-st[i];
+
+                        cost[i]*=100;
+                        cost[i]=(long)cost[i];
+                        cost[i]/=100;
+
                         sum+=cost[i];
                     }
 
+                    sum*=100;
+                    sum=(long)sum;
+                    sum/=100;
+
 
                     String text="Dear Sir/Ma'am\n Thank you for using IFB Services. Please find the payment details below-\n";
-                    text+="Id.\t Technican\t Start \t End \t Rate \t Cost\n";
+                    text+="Id.  \t Technican  \t Duration \t Rate \t Cost\n";
                     for(int i=0;i<n;i++)
                     {
-                        text+=Integer.toString(id[0])+"\t"+tech[0]+"\t"+Integer.toString(st[i])+"\t";
-                        text+=Integer.toString(end[i])+"\t"+Integer.toString(rate[i])+"\t"+Integer.toString(cost[i])+"\n";
+                        text+=Integer.toString(id[0])+"  \t"+tech[0]+"  \t";
+                        text+=Long.toString(duration[i])+"\t"+Double.toString(rate[i])+"\t"+Double.toString(cost[i])+"\n";
                     }
-                    text+="\n Hence, your total cost is equal to Rs"+Integer.toString(sum)+"\n\n Thanking You,\n IFB Admin.";
+                    text+="\n Hence, your total cost is equal to Rs"+Double.toString(sum)+"\n\n Thanking You,\n IFB Admin.";
                     Intent i = new Intent(Intent.ACTION_SEND);
                     i.setType("message/rfc822");
                     i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"f20160081@hyderabad.bits-pilani.ac.in"});

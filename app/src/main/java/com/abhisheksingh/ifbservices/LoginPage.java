@@ -15,9 +15,9 @@ public class LoginPage extends AppCompatActivity {
     EditText username_new,password_new,valid_w;
     String username_admin="sep",password_admin="1234";
     ProgressBar pbar;
-    public static String[] user_emp={"ram","mahesh","shankar","ganesh","mohan","pritam","suraj","krishna","mohit","kishan"};
+    static  int i,emp_no;
+    public static String[] user_emp={"Ram","Mahesh","Shankar","Ganesh","Mohan","Pritam","Suraj","Krishna","Mohit","Kishan"};
     public static String[] pass_emp={"sep","sep","sep","sep","sep","sep","sep","sep","sep","sep"};
-    static  int i;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +43,7 @@ public class LoginPage extends AppCompatActivity {
                 {
                     if(user_emp[i].equals(username_new.getText().toString()) && pass_emp[i].equals(password_new.getText().toString()))
                     {
+                        emp_no=i;
                         startActivity(new Intent(LoginPage.this,EmployeePage.class));
                         Toast.makeText(LoginPage.this,"Welcome",Toast.LENGTH_LONG).show();
                         flag=true;

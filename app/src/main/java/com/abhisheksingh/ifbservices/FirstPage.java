@@ -13,14 +13,40 @@ import android.view.View.OnClickListener;
 import java.util.ArrayList;
 import java.io.*;
 
+/*End of imports*/
 
 
 public class FirstPage extends AppCompatActivity {
 
+    /*
+    Declaring all the needed data structures &etc. on starting of the app. This is to prevent any
+    unwanted or unforeseen exception and to make the app more robust and bug-free.
+    Names are self-Explanatory
+     */
     public static ArrayList <Employee> employees= new ArrayList<Employee>();
-    static public float total=0;
-    static public int num=0;
+    public static ArrayList<Task> assigned=new ArrayList<Task>();
+    public static ArrayList<Task> unassigned=new ArrayList<Task>();;
+    public static ArrayList<Task> finished=new ArrayList<Task>();;
+
+    static public float total=20;//Total stars achieved in rating.
+    static public int num=5;//Total number of customers who rated.
+    //App Rating = Total/num;-Simple Average.
+
     public static File root;
+
+    /*
+    Much part of the page is dedicated to initialising things so that other pages can do their job
+    without any hindrance. As such, this class is not given any particular functionality except for
+    assuring that all required data structures, variables etc. are declared.
+     */
+
+
+
+
+    String[] user_emp={"Ram","Mahesh","Shankar","Ganesh","Mohan","Pritam","Suraj","Krishna","Mohit","Kishan"};
+    String[] pass_emp={"sep","sep","sep","sep","sep","sep","sep","sep","sep","sep"};
+    public static String[] job={"Plumber","Electrician","Technician","Carpenter","Mechanic"};
+    public static double rateOfTechnician[]={0.07,0.15,0.12,0.16,0.09};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +55,11 @@ public class FirstPage extends AppCompatActivity {
         Button Administrator=findViewById(R.id.administrator_login_btn);
         Button Employee=findViewById(R.id.employee_login_btn);
         Button Guest=findViewById(R.id.guest_login_btn);
+
+        for(int i=0;i<10;i++)
+        {
+            employees.add(new Employee(user_emp[i],pass_emp[i],user_emp[i],job[i%5],"N/A",i+1,3+(float)Math.random()));
+        }
 
         try {
             root = new File(Environment.getExternalStorageDirectory(), "IFB");
