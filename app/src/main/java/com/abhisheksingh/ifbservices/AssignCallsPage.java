@@ -57,6 +57,15 @@ public class AssignCallsPage extends AppCompatActivity {
             employeeAvailability_text.setText("No Available Employee!!");
         }
 
+        try{
+            Task t=FirstPage.assigned.get(IdOnTaskAssign++);
+            ongoingCall_text.setText(t.getDescription());
+        }
+        catch (Exception e)
+        {
+            ongoingCall_text.setText("No further tasks!");
+        }
+
 
 
         logout_calls_btn.setOnClickListener(new View.OnClickListener() {
