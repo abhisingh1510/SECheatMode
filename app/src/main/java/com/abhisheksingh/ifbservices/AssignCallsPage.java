@@ -96,10 +96,19 @@ public class AssignCallsPage extends AppCompatActivity {
                         t.setStartTime(System.currentTimeMillis());
                         FirstPage.assigned.add(t);
                         FirstPage.unassigned.remove(IdOnTask);
+                        try{
+                            t=FirstPage.assigned.get(IdOnTaskAssign++);
+                            ongoingCall_text.setText(t.getDescription());
+                        }
+                        catch (Exception e)
+                        {
+                            ongoingCall_text.setText("No further tasks!");
+                        }
                         try {
                             t = FirstPage.unassigned.get(IdOnTask);
                             callTally_text.setText(Integer.toString(IdOnTask) + "/" + Integer.toString(FirstPage.unassigned.size()));
                             callAssigned_text.setText(t.getDescription());
+
                             for(int i=0;i<FirstPage.employees.size();i++)
                             {
                                 Employee e=FirstPage.employees.get(i);
@@ -116,6 +125,7 @@ public class AssignCallsPage extends AppCompatActivity {
                             callAssigned_text.setText("No further tasks!");
                             employeeAvailability_text.setText("No Available Employee!!");
                         }
+
                     } else {
                         employeeAvailability_text.setText("No Available Employee!!");
                     }
